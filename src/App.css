@@ -183,7 +183,7 @@ header {
   font-size: 1.5rem;
   font-weight: bold;
   color: white;
-  width: 70px;
+  width: 100%;
   padding: 15px 0;
   background: hsl(345deg 100% 47%);
   will-change: transform;
@@ -254,10 +254,14 @@ header {
   outline: none;
 }
 
+.equals {
+  grid-column: 3 / 5;
+}
+
+
 .calculator {
   display: flex;
   width: 300px;
-  height: 500px;
   padding: 40px 24px;
   flex-direction: column;
   border-radius: 32px;
@@ -267,7 +271,7 @@ header {
   box-shadow: hsla(20, 20%, 10%, 0.3) 0px 15px 20px -5px, hsla(20, 20%, 0%, 0.2) 0px 10px 10px -5px;
 }
 
-.calc-window {
+.screen {
   font-family: 'Digital-7 Mono', sans-serif;
   color: black;
   border: 1px solid hsl(0, 0%, 50%);
@@ -275,14 +279,18 @@ header {
   border-radius: 8px;
   font-size: 3rem;
   padding: 4px 12px;
+  margin-bottom: 24px;
   text-align: right;
   box-shadow: hsla(240, 30%, 28%, 0.25) 0px 30px 60px -12px inset, hsla(0, 0%, 0%, 0.3) 0px 18px 36px -18px inset;
 }
 
-.btn-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 24px;
+
+.buttonBox {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-gap: 10px;
 }
 
 
