@@ -1,3 +1,14 @@
+@import url('https://fonts.cdnfonts.com/css/digital-7-mono');
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Just+Another+Hand&display=swap');
+
+:root {
+  --pink: hsl(332, 100%, 80%);
+  --pink-dark: hsl(332, 70%, 80%);
+  --tape-gray: hsl(54, 29%, 80%);
+  --tape-edge-gray: hsl(54, 26%, 90%);
+  --transparent: rgba(255, 255, 255, 0);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,7 +18,116 @@ body {
   display: flex;
   justify-content: center;
   padding: 5%;
+  background: hsl(35, 100%, 92%);
+  width: 60vw;
+  margin:auto;
 }
+
+header {
+  width: 500px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.pink {
+  --paper-color: var(--pink);
+  --paper-dark: var(--pink-dark);
+  --shadow-size: 1px;
+  --transparent: rgba(236, 178, 186, 0);
+}
+
+
+.paper {
+  position: relative;
+  z-index: -99;
+  background: linear-gradient(
+      to bottom right,
+      var(--paper-dark),
+      20%,
+      var(--transparent)
+    ),
+    var(--paper-color);
+  width: 250px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Just Another Hand", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+  box-shadow: var(--shadow-size) var(--shadow-size) 2px var(--paper-dark);
+  transform: rotate(345deg);
+  flex-direction: column;
+  text-align: center;
+}
+
+.paper h1 {
+  font-weight: 300;
+  font-style: normal;
+  width: 100%;
+  margin: 0 auto -12px;
+}
+
+.paper p {
+  width: 100%;
+  font-size: 1rem;
+}
+
+.tape-section {
+  position: absolute;
+  width: 100%;
+}
+
+.tape-section:first-of-type {
+  top: 0;
+}
+
+.tape-section:last-of-type {
+  bottom: 0;
+}
+
+.tape-section::before,
+.tape-section::after {
+  content: "";
+  width: 70px;
+  height: 24px;
+  position: absolute;
+  background-color: var(--tape-gray);
+  opacity: 0.5;
+  border-right: 1px dotted var(--tape-edge-gray);
+  border-left: 1px dotted var(--tape-edge-gray);
+}
+
+.tape-section:last-of-type::after {
+  transform: rotate(-45deg);
+  right: -4vmin;
+  top: -3vmin;
+}
+
+.tape-section:first-of-type::before {
+  transform: rotate(-45deg);
+  left: -4vmin;
+}
+
+.tape-section:first-of-type::after {
+  transform: rotate(45deg);
+  right: -4vmin;
+  top: 0;
+}
+
+.tape-section:last-of-type::before {
+  transform: rotate(45deg);
+  left: -4vmin;
+  bottom: 0;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  width: 500px;
+}
+
 
 .btn {
   position: relative;
@@ -138,19 +258,51 @@ body {
   display: flex;
   width: 300px;
   height: 500px;
+  padding: 40px 24px;
   flex-direction: column;
   border-radius: 32px;
-  background: rgb(255,240,122);
-  background: linear-gradient(0deg, rgba(255,240,122,1) 0%, rgba(255,247,182,1) 100%);
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  border: 1px solid hsl(53, 100%, 70%);
+  background: hsl(53, 100%, 74%);
+  background: linear-gradient(0deg, hsl(53, 100%, 75%) 0%, hsl(53, 100%, 85%) 100%);
+  box-shadow: hsla(20, 20%, 10%, 0.3) 0px 15px 20px -5px, hsla(20, 20%, 0%, 0.2) 0px 10px 10px -5px;
 }
 
 .calc-window {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  font-family: 'Digital-7 Mono', sans-serif;
+  color: black;
+  border: 1px solid hsl(0, 0%, 50%);
+  background-color: hsl(0, 0%, 65%);
+  border-radius: 8px;
+  font-size: 3rem;
+  padding: 4px 12px;
+  text-align: right;
+  box-shadow: hsla(240, 30%, 28%, 0.25) 0px 30px 60px -12px inset, hsla(0, 0%, 0%, 0.3) 0px 18px 36px -18px inset;
 }
 
 .btn-row {
   display: flex;
   justify-content: space-between;
   padding: 24px;
+}
+
+
+@media screen and (max-width: 500px) {
+  body {
+    width: 100vw;
+    padding: 5% 0;
+  }
+
+  .main {
+    width: 100%;
+  }
+
+  .paper {
+    transform: rotate(350deg);
+  }
+  
+  header {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
 }
