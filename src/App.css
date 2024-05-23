@@ -1,38 +1,156 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 5%;
+}
+
+.btn {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  transition: filter 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  background: hsl(0deg 0% 0% / 0.25);
+  will-change: transform;
+  transform: translateY(2px);
+  transition:
+    transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
+}
+
+
+
+ .btn-edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  background: linear-gradient(
+    to left,
+    hsl(340deg 100% 16%) 0%,
+    hsl(340deg 100% 32%) 8%,
+    hsl(340deg 100% 32%) 92%,
+    hsl(340deg 100% 16%) 100%
+  );
+}
+
+.btn-front {
+  display: block;
+  position: relative;
+  border-radius: 18px;
+  font-size: 1.5rem;
+  font-weight: bold;
   color: white;
+  width: 70px;
+  padding: 15px 0;
+  background: hsl(345deg 100% 47%);
+  will-change: transform;
+  transform: translateY(-4px);
+  transition:
+    transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
 }
 
-.App-link {
-  color: #61dafb;
+.btn-action > .btn-front {
+  color:hsl(197, 100%, 20%);
+  background: hsl(197, 100%, 75%);
+  background-image: linear-gradient(0deg, hsl(197, 100%, 70%) 0%, hsl(197, 100%, 75%) 100%);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-action > .btn-edge {
+  background: linear-gradient(
+    to left,
+    hsl(184, 65%, 16%) 0%,
+    hsl(184, 65%, 32%) 8%,
+    hsl(184, 65%, 32%) 92%,
+    hsl(261deg 165% 16%) 100%
+  );
+}
+
+
+.btn-number > .btn-front {
+  background: hsl(323, 100%, 75%);
+  background-image: linear-gradient(0deg, hsl(323, 100%, 70%) 0%, hsl(323, 100%, 75%) 100%);
+  color: hsl(323, 100%, 20%);
+}
+
+.btn-number > .btn-edge {
+  background: linear-gradient(
+    to left,
+    hsl(323, 65%, 31%) 0%,
+    hsl(323, 65%, 51%) 8%,
+    hsl(323, 65%, 51%) 92%,
+    hsl(323, 65%, 31%) 100%
+  );
+}
+
+.btn:hover {
+  filter: brightness(110%);
+  -webkit-filter: brightness(110%);
+}
+
+.btn:active .btn-front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+
+.btn:hover .btn-shadow {
+  transform: translateY(4px);
+  transition:
+    transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.btn:active .btn-shadow {
+  transform: translateY(1px);
+  transition: transform 34ms;
+}
+
+.btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.calculator {
+  display: flex;
+  width: 300px;
+  height: 500px;
+  flex-direction: column;
+  border-radius: 32px;
+  background: rgb(255,240,122);
+  background: linear-gradient(0deg, rgba(255,240,122,1) 0%, rgba(255,247,182,1) 100%);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+.calc-window {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.btn-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 24px;
 }
