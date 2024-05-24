@@ -1,12 +1,13 @@
 import Screen from './Screen'
 import ButtonBox from './ButtonBox';
 import Button from './Button';
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
+import { evaluate } from 'mathjs';
 
 
 const btnValues = [
     ["C", "+-", "%", "/"],
-    [7, 8, 9, "X"],
+    [7, 8, 9, "*"],
     [4, 5, 6, "-"],
     [1, 2, 3, "+"],
     [0, ".", "="],
@@ -14,35 +15,51 @@ const btnValues = [
 
 
 function Calculator() {
-    const [display, setDisplay] = useState("0");
+    const [input, setInput] = useState("0");
+    const [result, setResult] = useState("0");
 
-    const handleButtonClick = (num) => {
-        if (num === "0" && display === "0") {
-            return;
-        } else if (display === "0") {
-            setDisplay(num.toString());
-        } else {
-            setDisplay(display.toString() + num.toString());
-        }
-    };
-
-    if (display.length > 12) {
-        setDisplay("Sry too long");
+    if (input.length > 12) {
+        setInput("Sry too long");
     }
 
-    let userInput = Number(display);
-    const [result, setResult] = useState(0)
-
-    function plus(e) { 
-        e.preventDefault();
-        setResult((result) => result + userInput);
-        setDisplay(result)
-      }; 
+    const handleClick = (btn) => {
+        if (btn === "=") {
+            console.log("Equals button clicked");
+             try {
+                const evaluatedResult = evaluate(input);
+                setResult(evaluatedResult.toString());
+              } catch (error) {
+                setResult('Error');
+              }
+          } else if (typeof btn === "string" && btn === "C") {
+            console.log("Clear input button clicked");
+            setInput('0');
+            setResult(0);
+          } else if (typeof btn === "string" && btn !== ".") {
+            console.log("Action button clicked:", btn);
+            setInput(input + btn);
+          }
+            else if (typeof btn === "number" || btn === "." ) {
+            console.log("Number button clicked:", btn);
+            if (input === "0" && btn === ".") {
+                setInput("0.");
+            }
+            else if (input === "0") {
+                setInput(btn.toString());
+            }
+            else {
+                setInput(input + btn);
+            }
+          } else {
+            console.log("Unknown button type clicked");
+          }
+    };
+    
      
 
     return (
         <div className="calculator">
-            <Screen value={display} />
+            <Screen input={input} result={result} />
             <ButtonBox>
                 {
                 btnValues.flat().map((btn, i) => {
@@ -51,7 +68,7 @@ function Calculator() {
                         key={i}
                         className={btn === "=" ? "btn-action equals" : (typeof btn === "string" ? "btn-action" : typeof btn === "number" ? "btn-number" : "")}
                         value={btn}
-                        onClick={() => handleButtonClick(btn)}>
+                        onClick={() => handleClick(btn)}>
                     </Button>
                     );
                 })

@@ -1,7 +1,8 @@
-const Screen = ({ value }) => {
+const Screen = ({ input, result }) => {
     return (
         <div className="screen">
-            <p>{value}</p>
+            <p className="inputrow">{input}</p>
+            <p className="resultrow">{result}</p>
         </div>
     );
 }
